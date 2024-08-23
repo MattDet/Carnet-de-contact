@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter ou Modifier un Contact</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" />
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title" th:text="${contact.id == null ? 'Ajouter un nouveau contact' : 'Modifier le contact'}"></h1>
+            
+            <!-- Formulaire de contact -->
+            <form th:action="@{/contacts}" th:object="${contact}" method="post">
+                <div class="field">
+                    <label class="label">Nom</label>
+                    <div class="control">
+                        <input class="input" type="text" th:field="*{name}" placeholder="Nom du contact" required>
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                        <input class="input" type="email" th:field="*{email}" placeholder="Adresse email" required>
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label class="label">Téléphone</label>
+                    <div class="control">
+                        <input class="input" type="text" th:field="*{phone}" placeholder="Numéro de téléphone" required>
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <label class="label">Adresse</label>
+                    <div class="control">
+                        <input class="input" type="text" th:field="*{address}" placeholder="Adresse" required>
+                    </div>
+                </div>
+                
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary" type="submit">Enregistrer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

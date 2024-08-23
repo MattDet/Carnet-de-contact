@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Carnet de Contacts</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" />
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Carnet de Contacts</h1>
+            
+            <!-- Tableau des contacts -->
+            <table class="table is-striped is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Adresse</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="contact : ${contacts}">
+                        <td th:text="${contact.name}">Nom</td>
+                        <td th:text="${contact.email}">Email</td>
+                        <td th:text="${contact.phone}">Téléphone</td>
+                        <td th:text="${contact.address}">Adresse</td>
+                        <td>
+                            <a th:href="@{/contacts/{id}(id=${contact.id})}" class="button is-info is-small">Modifier</a>
+                            <form th:action="@{/contacts/{id}(id=${contact.id})}" method="post" style="display: inline;">
+                                <input type="hidden" name="_method" value="delete"/>
+                                <button class="button is-danger is-small">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- Lien vers la page d'ajout d'un contact -->
+            <a href="/contacts/new" class="button is-primary">Ajouter un nouveau contact</a>
+        </div>
+    </section>
+</body>
+</html>
